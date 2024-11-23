@@ -9,7 +9,7 @@ const AmazingButton = () => {
     setLaunched(true);
     setTimeout(() => {
       window.open(
-        "https://www.canva.com/design/DAGWdQq0VOs/fbxSFTPEgKmKbFjqxX3ldw/view?utm_content=DAGWdQq0VOs&utm_campaign=designshare&utm_medium=link&utm_source=editor",
+        "https://www.canva.com/design/DAGXHgnfUhI/WSuZRsBHuC4EqvB47e2oLg/view?utm_content=DAGXHgnfUhI&utm_campaign=designshare&utm_medium=link&utm_source=editor",
         "_blank"
       );
     }, 1000); // Delay to allow the animation to finish before opening the link

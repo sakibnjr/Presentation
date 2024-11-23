@@ -1,13 +1,41 @@
 import React from "react";
+import TableComponent from "./TableComponent";
+import VisualizationComponent from "./VisualizationComponent";
+import data from "../public/data.json";
 
-const App = () => {
+const analyzeData = (data) => {
+  const modelCounts = {};
+  const methodologyCounts = {};
+
+  data.forEach((item) => {
+    const models = item["All Models Used"]
+      .split(/,| and | \+ /)
+      .map((m) => m.trim());
+    models.forEach((model) => {
+      modelCounts[model] = (modelCounts[model] || 0) + 1;
+    });
+
+    const methodologies = item.Methodology.split(/[.;]/).map((m) => m.trim());
+    methodologies.forEach((method) => {
+      methodologyCounts[method] = (methodologyCounts[method] || 0) + 1;
+    });
+  });
+
+  return { modelCounts, methodologyCounts };
+};
+
+function App() {
+  const { modelCounts, methodologyCounts } = analyzeData(data);
+
   return (
     <div>
-      <a href="https://www.canva.com/design/DAGWLjLxGV4/H7h7XNmg1lN6O5XGp6KHUw/view?utm_content=DAGWLjLxGV4&utm_campaign=designshare&utm_medium=link&utm_source=editor">
-        Start
-      </a>
+      <TableComponent data={data} />
+      <VisualizationComponent
+        modelCounts={modelCounts}
+        methodologyCounts={methodologyCounts}
+      />
     </div>
   );
-};
+}
 
 export default App;
